@@ -7,7 +7,7 @@ def base(request):
         form = pdfAcceptForm(request.POST, request.FILES)
 
         if form.is_valid():
-            form.save()
+            
             
             return HttpResponse('Form is valid')
     else:

@@ -5,11 +5,14 @@
 {% block content %}
 <h1 class='text-3xl font-semibold'>Files </h1>
 <div class='w-2/3 border'>
-    
+
     <form action='.' method='POST' enctype='multipart/form-data'>
-        {{ form.pdf_file}}
+        {% csrf_token %}
+        <div class='m-4'>
+            {{ form.forms_file}}
+        </div>
         
-        <button href='#' value='{{ # }}'> Submit </button>
+        <button href='#' value='Submit'> Submit </button>
     </form>
     
 </div>
