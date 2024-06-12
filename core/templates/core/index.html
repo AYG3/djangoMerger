@@ -13,6 +13,12 @@
         </div>
         <button class='px-4 py-2 m-4 bg-gray-600 rounded-lg' type='submit'> Upload </button>
     </form>
+
+    <div class='border rounded-xl'>
+        {% for file in files %}
+            {{ file.}}
+        {% endfor %}
+    </div>
     
 </div>
 {% endblock %}
