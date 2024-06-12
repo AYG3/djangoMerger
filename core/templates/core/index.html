@@ -5,8 +5,12 @@
 {% block content %}
 <h1 class='text-3xl font-semibold'>Files </h1>
 <div class='w-2/3 border'>
+    
     <form action='.' method='POST' enctype='multipart/form-data'>
-        {{ form.as_p }}
+        {{ form.pdf_file}}
+        
+        <button href='#' value='{{ # }}'> Submit </button>
     </form>
+    
 </div>
 {% endblock %}
