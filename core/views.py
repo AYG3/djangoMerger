@@ -7,9 +7,11 @@ def base(request):
         form = pdfAcceptForm(request.POST, request.FILES)
 
         if form.is_valid():
+            file = request.FILES['forms_file']
+            if not str(file).endswith('.pdf'):
+                return HttpResponse('File is not a pdf file:  ' + str(file))
             
-            
-            return HttpResponse('Form is valid')
+            return HttpResponse('Form is valid' + str(file))
     else:
         form = pdfAcceptForm()
     return render(request, 'core/index.html', {'form': form})
