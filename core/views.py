@@ -16,4 +16,4 @@ def base(request):
             return HttpResponse('Form is valid' + str(file) + '   Second pdf file:   ' + str(files))
     else:
         form = pdfAcceptForm()
-    return render(request, 'core/index.html', {'form': form})
+    return render(request, 'core/index.html', {'form': form, 'files': files })
