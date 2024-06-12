@@ -9,10 +9,9 @@
     <form action='.' method='POST' enctype='multipart/form-data'>
         {% csrf_token %}
         <div class='m-4'>
-            {{ form.forms_file}}
+            <input type='file' name='forms_file' multiple />
         </div>
-        
-        <button href='#' value='Submit'> Submit </button>
+        <button class='px-4 py-2 m-4 bg-gray-600 rounded-lg' type='submit'> Upload </button>
     </form>
     
 </div>
