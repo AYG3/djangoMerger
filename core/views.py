@@ -3,6 +3,7 @@ from django.shortcuts import render, HttpResponse
 from .forms import pdfAcceptForm
 
 def base(request):
+    files = []
     if request.method == 'POST':
         form = pdfAcceptForm(request.POST, request.FILES)
 
