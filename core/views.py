@@ -24,7 +24,8 @@ def uploadPDF(request):
         return render(request, 'core/index.html', {'form': form, 'files': files })
 
 def mergePDF(request):
-     return render(request, 'core/merge.py')
+     
+    return render(request, 'core/merge.py')
 
 
 
