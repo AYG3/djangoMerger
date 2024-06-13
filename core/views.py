@@ -6,6 +6,7 @@ from .forms import pdfAcceptForm
 files = []
 
 def uploadPDF(request): 
+    files = []
     if request.method == 'POST':
         form = pdfAcceptForm(request.POST, request.FILES)
 
