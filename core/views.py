@@ -37,4 +37,4 @@ def mergePDF(request):
     # Write the merged PDF to a new file
         with open('Merged - ' + str(files[0]), 'wb') as output_file:
             output_file = merger.write(output_file)
-    return render(request, 'core/index.py', {'output_file': output_file})
+    return render(request, 'core/index.py', { 'output_file': output_file })
