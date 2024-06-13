@@ -23,9 +23,8 @@ def uploadPDF(request):
         form = pdfAcceptForm()
         return render(request, 'core/index.html', {'form': form, 'files': files })
 
-
-def accept(request):
-
+def mergePDF(request):
+     return render(request, 'core/merge.py')
 
 
 
