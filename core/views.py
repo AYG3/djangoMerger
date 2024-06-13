@@ -1,9 +1,6 @@
 from django.shortcuts import render, HttpResponse
 import PyPDF2
-import sys
-import os
 from .forms import pdfAcceptForm
-
 
 
 files = []
@@ -27,8 +24,6 @@ def uploadPDF(request):
         return render(request, 'core/index.html', {'form': form, 'files': files })
 
 def mergePDF(request):
-
-
     merger = PyPDF2.PdfMerger()
 
     # Loop through all files in the current directory
@@ -39,9 +34,9 @@ def mergePDF(request):
                 merger.append(pdf_file)
 
     # Write the merged PDF to a new file
-        with open('Merged - 11. Ayoku Gibson_Use Of A Family Member Rep_IMM5713E.pdf', 'wb') as output_file:
-            merger.write(output_file)
-    return render(request, 'core/merge.py')
+        with open('Merged - ' + str(files[0]), 'wb') as output_file:
+            output_file = merger.write(output_file)
+    return render(request, 'core/merge.py', {'output_file': output_file})
 
 
 
