@@ -1,11 +1,14 @@
 from django.shortcuts import render, HttpResponse
-
+import PyPDF2
+import sys
+import os
 from .forms import pdfAcceptForm
 
 
 
+files = []
+
 def uploadPDF(request): 
-    files = []
     if request.method == 'POST':
         form = pdfAcceptForm(request.POST, request.FILES)
 
@@ -24,7 +27,20 @@ def uploadPDF(request):
         return render(request, 'core/index.html', {'form': form, 'files': files })
 
 def mergePDF(request):
-     
+
+
+    merger = PyPDF2.PdfMerger()
+
+    # Loop through all files in the current directory
+    for file in files:
+        if file.endswith('.pdf'):
+            # Open each PDF file and append it to the merger object
+            with open(file, 'rb') as pdf_file:
+                merger.append(pdf_file)
+
+    # Write the merged PDF to a new file
+        with open('Merged - 11. Ayoku Gibson_Use Of A Family Member Rep_IMM5713E.pdf', 'wb') as output_file:
+            merger.write(output_file)
     return render(request, 'core/merge.py')
 
 
