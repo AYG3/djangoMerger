@@ -9,13 +9,15 @@ def uploadPDF(request):
         form = pdfAcceptForm(request.POST, request.FILES)
 
         if form.is_valid():
-            file = request.FILES['forms_file']
-            file_len = str(len(request.FILES.getlist('forms_file')))
             files = request.FILES.getlist('forms_file')
-        
-            if not str(file).endswith('.pdf'):
-                return HttpResponse('File is not a pdf file:  ' + str(file))
+            saved_file_paths = []
+
+            for file in files:
+                if not str(file).endswith('.pdf'):
+                    return HttpResponse('File is not a pdf file:  ' + str(file))
             
+            #save files
+            file_path = MEDIA_ROOT + file.name
             return render(request, 'core/index.html', {'form': form, 'files': files })
             # return HttpResponse('Form is valid' + str(file) + '   Second pdf file:   ' + str(files) + '\n The file lenght is:  ' + file_len)
     else:

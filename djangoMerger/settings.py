@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 ]
 
 MEDIA_URL = 'pdf_media/'
-MEDIA_ROOT = BASE_DIR / 'pdf_media'
+MEDIA_ROOT = BASE_DIR / 'pdf_media/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
