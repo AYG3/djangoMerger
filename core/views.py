@@ -38,33 +38,3 @@ def mergePDF(request):
         with open('Merged - ' + str(files[0]), 'wb') as output_file:
             output_file = merger.write(output_file)
     return render(request, 'core/index.py', {'output_file': output_file})
-
-
-
-
-# def base(request):
-#     context = {'form': None, 'files': []}  # Initialize context
-#     if request.method == 'POST':
-#         form = pdfAcceptForm(request.POST, request.FILES)
-#         context['form'] = form  # Update form in context
-
-#         if form.is_valid():
-#             uploaded_files = request.FILES.getlist('forms_file')
-#             valid_files = [file for file in uploaded_files if str(file).endswith('.pdf')]
-
-#             if not valid_files:
-#                 return HttpResponse('No valid PDF files uploaded.')
-
-#             # Update files in context with the names of the uploaded PDF files
-#             context['files'] = [str(file) for file in valid_files]
-
-#             # You can add additional logic here if you need to process the files or save them
-
-#             # Re-render the page with the updated context
-#             return render(request, 'core/index.html', context)
-#     else:
-#         form = pdfAcceptForm()
-#         context['form'] = form  # Update form in context
-
-#     # Initial GET request or if the form is not valid, render the page with the initial or updated context
-#     return render(request, 'core/index.html', context)
