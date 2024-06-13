@@ -3,10 +3,8 @@ import PyPDF2
 from .forms import pdfAcceptForm
 
 
-files = []
 
 def uploadPDF(request): 
-    files = []
     if request.method == 'POST':
         form = pdfAcceptForm(request.POST, request.FILES)
 
@@ -22,7 +20,7 @@ def uploadPDF(request):
             # return HttpResponse('Form is valid' + str(file) + '   Second pdf file:   ' + str(files) + '\n The file lenght is:  ' + file_len)
     else:
         form = pdfAcceptForm()
-        return render(request, 'core/index.html', {'form': form, 'files': files })
+        return render(request, 'core/index.html', {'form': form, 'files': [] })
 
 def mergePDF(request):
     merger = PyPDF2.PdfMerger()
@@ -37,7 +35,7 @@ def mergePDF(request):
     # Write the merged PDF to a new file
         with open('Merged - ' + str(files[0]), 'wb') as output_file:
             output_file = merger.write(output_file)
-    return render(request, 'core/merge.py', {'output_file': output_file})
+    return render(request, 'core/index.py', {'output_file': output_file})
 
 
 
