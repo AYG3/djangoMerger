@@ -53,3 +53,4 @@ def mergePDF(request):
 
     # return HttpResponse('Files merged sucessfully')
     return render(request, 'core/index.py', { 'output_file': output_file })
+
