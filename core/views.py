@@ -39,7 +39,7 @@ def mergePDF(request):
         with open(file_path, 'rb') as pdf_file:
             merger.append(pdf_file)
 
-    output_file_path = 'media/uploads/Merged.pdf' #attempt to change to'Merged -  first file name'
+    output_file_path = f'media/uploads/Merged - {uploaded_files[0][0]}.pdf' #attempt to change to'Merged -  first file name'
     with open(output_file_path, 'wb') as output_file:
         merger.write(output_file)
     #clear session data
