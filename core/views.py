@@ -37,6 +37,7 @@ def mergePDF(request):
     # Loop through all files in the current directory
     for file_path in uploaded_files:
         # Open each PDF file and append it to the merger object
+        print(str(file_path))
         with open(file_path, 'rb') as pdf_file:
             merger.append(pdf_file)
 
