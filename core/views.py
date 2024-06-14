@@ -35,13 +35,16 @@ def mergePDF(request):
     merger = PyPDF2.PdfMerger()
     uploaded_files = request.session.get('uploaded_files', [])
     # Loop through all files in the current directory
-    for file in files:
-        if file.endswith('.pdf'):
-            # Open each PDF file and append it to the merger object
-            with open(file, 'rb') as pdf_file:
-                merger.append(pdf_file)
+    for file_path in uploaded_files:
+        # Open each PDF file and append it to the merger object
+        with open(file_path, 'rb') as pdf_file:
+            merger.append(pdf_file)
 
-    # Write the merged PDF to a new file
-    with open('Merged - ' + str(files[0]), 'wb') as output_file:
-        output_file = merger.write(output_file)
-    return render(request, 'core/index.py', { 'output_file': output_file })
+    output_file_path = 'media/uploads/Merged.pdf' #attempt to change to'Merged -  first file name'
+    with open(output_file_path, 'wb') as output_file:
+        merger.write(output_file)
+    #clear session data
+    del request.session['uploaded_files']
+
+    return HttpResponse('Files merged sucessfully')
+    # return render(request, 'core/index.py', { 'output_file': output_file })
