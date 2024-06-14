@@ -16,8 +16,15 @@ def uploadPDF(request):
                 if not str(file).endswith('.pdf'):
                     return HttpResponse('File is not a pdf file:  ' + str(file))
             
-            #save files
-            file_path = MEDIA_ROOT + file.name
+                #save pdf files
+                file_path = 'media/uploads/' + file.name
+                with open(file_path, 'wb+') as destination:
+                    for chunk in file.chunks():
+                        destination.write(chunk)
+                saved_file_paths.append(file_path)
+
+            request.session['uploaded_files'] = [saved_file_paths]
+
             return render(request, 'core/index.html', {'form': form, 'files': files })
             # return HttpResponse('Form is valid' + str(file) + '   Second pdf file:   ' + str(files) + '\n The file lenght is:  ' + file_len)
     else:
@@ -26,7 +33,7 @@ def uploadPDF(request):
 
 def mergePDF(request):
     merger = PyPDF2.PdfMerger()
-
+    uploaded_files = request.session.get('uploaded_files', [])
     # Loop through all files in the current directory
     for file in files:
         if file.endswith('.pdf'):
