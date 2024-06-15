@@ -45,5 +45,7 @@ def mergePDF(request):
     #clear session data
     del request.session['uploaded_files']
 
+    output_file_ulr ='media/uploads/' + 
+
     # return HttpResponse('Files merged sucessfully')
     return render(request, 'core/index.py', { 'output_file': output_file })
