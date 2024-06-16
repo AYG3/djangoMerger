@@ -39,12 +39,9 @@ def mergePDF(request):
         with open(file_path, 'rb') as pdf_file:
             merger.append(pdf_file)
 
-    output_file_name = str(uploaded_files[0][0])
-    output_file_path = f'media/uploads/' + output_file_name #attempt to change to'Merged -  first file name'
-
-    print(end='n\n\n\n\n\n\n\n')
-    print(f'Output file name = {output_file_name}')
-    print(end='n\n\n\n\n\n\n\n')
+    # output_file_name = str(uploaded_files[0][0])
+    output_file_name = 'merged1.pdf'
+    output_file_path = f'media/uploads/merged1.pdf' #attempt to change to'Merged -  first file name'
 
     with open(output_file_path, 'wb') as output_file:
         merger.write(output_file)
@@ -52,7 +49,7 @@ def mergePDF(request):
     #clear session data
     del request.session['uploaded_files']
 
-    output_file_url ='media/uploads/' + output_file_name
+    output_file_url ='media/uploads/merged1.pdf'
 
     # return HttpResponse('Files merged sucessfully')
     return render(request, 'core/index.py', { 'output_file_url': output_file_url })
