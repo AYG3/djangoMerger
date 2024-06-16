@@ -39,7 +39,7 @@ def mergePDF(request):
         with open(file_path, 'rb') as pdf_file:
             merger.append(pdf_file)
 
-    output_file_name = str(uploaded_files[0][0]) + '.pdf'
+    output_file_name = str(uploaded_files[0][0])
     output_file_path = f'media/uploads/' + output_file_name #attempt to change to'Merged -  first file name'
 
     print(end='n\n\n\n\n\n\n\n')
