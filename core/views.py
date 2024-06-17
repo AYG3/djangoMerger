@@ -57,6 +57,8 @@ def mergePDF(request):
 
         # Redirect to a new URL to download the merged file or show a success message
         # return HttpResponseRedirect(reverse('your_download_view_name'))
-        return HttpResponseRedirect('Files succesfully merged')
+        return render(request, 'core/merged.html', {
+            'output_file' : output_file
+        })
     except Exception as e:
         return HttpResponse(f'An error occurred: {str(e)}')
