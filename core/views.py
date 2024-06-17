@@ -34,10 +34,19 @@ def uploadPDF(request):
 def mergePDF(request):
     merger = PyPDF2.PdfMerger()
     uploaded_files = request.session.get('uploaded_files', [])
+    
+    
+    print(end='\n\n\n\n\n') 
+    print('Uploaded files: ' + uploaded_files)
+    print(end='\n\n\n\n\n')
+
+
     # Loop through all files in the current directory    
     for file_path in uploaded_files[0]:
         with open(file_path, 'rb') as pdf_file:
             merger.append(pdf_file)
+
+    
 
     # output_file_name = str(uploaded_files[0][0])
     output_file_path = 'media/uploads/merged1.pdf' #attempt to change to'Merged -  first file name'
