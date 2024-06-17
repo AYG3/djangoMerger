@@ -6,5 +6,5 @@ app_name = 'core'
 
 urlpatterns = [
     path('', views.uploadPDF, name='upload_pdf'),
-    path('', views.mergePDF, name='merge')
+    path('merged/', views.mergePDF, name='merge')
 ]
