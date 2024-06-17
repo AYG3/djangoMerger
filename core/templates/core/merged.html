@@ -5,5 +5,10 @@
 {% block content%}
 <div class='w-2/3 border rounded p-8'>
     <p class='font-semibold text-3xl'>Download File: </p>
+    {% if output_file %}
+        <p> Output file is here bruv </p>
+    {% elif %}
+        <p> No output file bruv </p>
+    {% endif %}
 </div>
 {% endblock %}
