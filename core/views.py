@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 import os
-
+from django.conf import settings
 import PyPDF2
 from .forms import pdfAcceptForm
 
@@ -57,8 +57,10 @@ def mergePDF(request):
 
         # Redirect to a new URL to download the merged file or show a success message
         # return HttpResponseRedirect(reverse('your_download_view_name'))
+        output_file_url = settings.MEDIA_URL + output_file_name
+
         return render(request, 'core/merged.html', {
-            'output_file' : output_file_path
+            'output_file' : output_file_url
         })
     except Exception as e:
         return HttpResponse(f'An error occurred: {str(e)}')
