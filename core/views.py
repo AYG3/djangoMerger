@@ -1,4 +1,7 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect
+from django.urls import reverse
+import os
+
 import PyPDF2
 from .forms import pdfAcceptForm
 
@@ -32,30 +35,27 @@ def uploadPDF(request):
         return render(request, 'core/index.html', {'form': form, 'files': [] })
 
 def mergePDF(request):
-    merger = PyPDF2.PdfMerger()
-    uploaded_files = request.session.get('uploaded_files', [])
-    
-    
-    print(end='\n\n\n\n\n') 
-    print('Uploaded files: ' + uploaded_files)
-    print(end='\n\n\n\n\n')
+    try:
+        merger = PyPDF2.PdfMerger()
+        uploaded_files = request.session.get('uploaded_files', [])
+        
+        if not uploaded_files:
+            return HttpResponse('No files uploaded')
 
+        for file_path in uploaded_files[0]:
+            with open(file_path, 'rb') as pdf_file:
+                merger.append(pdf_file)
 
-    # Loop through all files in the current directory    
-    for file_path in uploaded_files[0]:
-        with open(file_path, 'rb') as pdf_file:
-            merger.append(pdf_file)
+        output_file_name = 'Merged-' + os.path.basename(uploaded_files[0][0])
+        output_file_path = os.path.join('media', 'uploads', output_file_name)
 
-    
+        with open(output_file_path, 'wb') as output_file:
+            merger.write(output_file)
 
-    # output_file_name = str(uploaded_files[0][0])
-    output_file_path = 'media/uploads/merged1.pdf' #attempt to change to'Merged -  first file name'
+        # Optionally, clear session data here or after download
+        # del request.session['uploaded_files']
 
-    with open(output_file_path, 'wb') as output_file:
-        merger.write(output_file)
-
-    #clear session data
-    del request.session['uploaded_files']
-
-    return HttpResponse('Files merged sucessfully')
-    # return render(request, 'core/index.py', { 'output_file': output_file })
+        # Redirect to a new URL to download the merged file or show a success message
+        return HttpResponseRedirect(reverse('your_download_view_name'))
+    except Exception as e:
+        return HttpResponse(f'An error occurred: {str(e)}')
