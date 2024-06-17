@@ -56,6 +56,7 @@ def mergePDF(request):
         # del request.session['uploaded_files']
 
         # Redirect to a new URL to download the merged file or show a success message
-        return HttpResponseRedirect(reverse('your_download_view_name'))
+        # return HttpResponseRedirect(reverse('your_download_view_name'))
+        return HttpResponseRedirect('Files succesfully merged')
     except Exception as e:
         return HttpResponse(f'An error occurred: {str(e)}')
