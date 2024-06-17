@@ -16,6 +16,18 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
+STATIC_URL = 'static/'
+
+
+# MEDIA_ROOT is the file system path where files uploaded using FileField will be stored.
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# MEDIA_URL is the URL that will serve the media files stored by MEDIA_ROOT. 
+# It must end with a slash if set to a non-empty value.
+MEDIA_URL = '/media/'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -41,9 +53,6 @@ INSTALLED_APPS = [
 ]
 
 
-STATIC_URL = 'static/'
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
