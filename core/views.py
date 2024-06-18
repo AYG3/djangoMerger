@@ -6,7 +6,7 @@ import PyPDF2
 from .forms import pdfAcceptForm
 import pdfkit
 
-config = pdfkit.configure(wkthmltopdf=r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe')
+config = pdfkit.configuration(wkhtmltopdf=r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe')
 
 
 def uploadPDF(request): 
