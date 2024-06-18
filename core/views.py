@@ -66,16 +66,7 @@ def mergePDF(request):
             response = HttpResponse(pdf_file.read(), content_type='application/pdf')
             response['Content-Disposition'] = f'attachment; filename="{output_file_name}"'
             return response
-
-        # pdf = pdfkit.from_url(request.build_absolute_uri(output_file_url), False, configuration=config)
-        # response = HttpResponse(pdf, content_type='application/pdf') # content_toe?
-        # response['Content-Disposition'] = 'attachment; filename="file_name.pdf"'
-        # return response
         
-        # return render(request, 'core/merged.html', {
-        #     'output_file' : output_file_url
-        # })
     except Exception as e:
         return HttpResponse(f'An error occurred: {str(e)}')
     
-# def generatePDF(request):
