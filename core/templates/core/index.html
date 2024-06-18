@@ -6,7 +6,7 @@
 <h1 class='text-3xl font-semibold'>Files </h1>
 <div class='w-2/3 border p-4'>
 
-    <form action='.' method='POST' enctype='multipart/form-data' class='{% if files %} {% else %} mb-12'>
+    <form action='.' method='POST' enctype='multipart/form-data' class='{% if files %} {% else %} mb-12 {% endif %}'>
         {% csrf_token %}
         <div class='m-4'>
             <input type='file' name='forms_file' multiple />
