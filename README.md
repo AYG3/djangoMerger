@@ -5,7 +5,7 @@ This project is a straightforward Django application designed to merge multiple 
 ## Features
 
 - **PDF Upload**: Users can upload multiple PDF files.
-- **Merge PDF**: With a single click, the selected PDFs are merged into one document.
+- **Merge PDF**: The selected PDFs are merged into one document.
 - **Download**: Users can download the merged PDF file.
 
 ## Installation
