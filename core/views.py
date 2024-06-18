@@ -61,10 +61,16 @@ def mergePDF(request):
         # return HttpResponseRedirect(reverse('your_download_view_name'))
         output_file_url = settings.MEDIA_URL + output_file_name
 
-        pdf = pdfkit.from_url(request.build_absolute_uri(output_file_url), False, configuration=config)
-        response = HttpResponse(pdf, content_type='application/pdf') # content_toe?
-        response['Content-Dispositon'] = 'attachment; filename="file_name.pdf"'
-        return response
+        # Assuming output_file_path is the path to the merged PDF file
+        with open(output_file_path, 'rb') as pdf_file:
+            response = HttpResponse(pdf_file.read(), content_type='application/pdf')
+            response['Content-Disposition'] = f'attachment; filename="{output_file_name}"'
+            return response
+
+        # pdf = pdfkit.from_url(request.build_absolute_uri(output_file_url), False, configuration=config)
+        # response = HttpResponse(pdf, content_type='application/pdf') # content_toe?
+        # response['Content-Disposition'] = 'attachment; filename="file_name.pdf"'
+        # return response
         
         # return render(request, 'core/merged.html', {
         #     'output_file' : output_file_url
