@@ -31,7 +31,6 @@ def uploadPDF(request):
             request.session['uploaded_files'] = [saved_file_paths]
 
             return render(request, 'core/index.html', {'form': form, 'files': files })
-            # return HttpResponse('Form is valid' + str(file) + '   Second pdf file:   ' + str(files) + '\n The file lenght is:  ' + file_len)
     else:
         form = pdfAcceptForm()
         return render(request, 'core/index.html', {'form': form, 'files': [] })
