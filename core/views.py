@@ -54,7 +54,7 @@ def mergePDF(request):
         with open(output_file_path, 'wb') as output_file:
             merger.write(output_file)
 
-        # Assuming output_file_path is the path to the merged PDF file
+        # Output_file_path is the path to the merged PDF file
         with open(output_file_path, 'rb') as pdf_file:
             response = HttpResponse(pdf_file.read(), content_type='application/pdf')
             response['Content-Disposition'] = f'attachment; filename="{output_file_name}"'
