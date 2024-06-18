@@ -54,13 +54,6 @@ def mergePDF(request):
         with open(output_file_path, 'wb') as output_file:
             merger.write(output_file)
 
-        # Optionally, clear session data here or after download
-        # del request.session['uploaded_files']
-
-        # Redirect to a new URL to download the merged file or show a success message
-        # return HttpResponseRedirect(reverse('your_download_view_name'))
-        output_file_url = settings.MEDIA_URL + output_file_name
-
         # Assuming output_file_path is the path to the merged PDF file
         with open(output_file_path, 'rb') as pdf_file:
             response = HttpResponse(pdf_file.read(), content_type='application/pdf')
