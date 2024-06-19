@@ -12,7 +12,7 @@ This project is a straightforward Django application designed to merge multiple 
 
 To get this project up and running on your local machine, follow these steps:
 
-1. Clone the Repository
+1. **Clone the Repository**
 
 ```bash
 git clone https://github.com/AYG3/djangomerger.git
